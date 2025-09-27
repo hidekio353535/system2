@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="GOOGLEBOT" content="NOINDEX, NOFOLLOW" />
+	<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+	<meta http-equiv="X-UA-Compatible" content="IE=8 ; IE=9" />
+
+	<title>現場管理</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link href="../css/smoothness/jquery-ui-1.9.0.custom.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../css/screen.css?Ver=1.02">
+	<link rel="stylesheet" type="text/css" href="../css/gnav.css">
+
+	<script src="../js/jquery-1.8.2.min.js"></script>
+	<script src="../js/jquery-ui-1.9.0.custom.min.js"></script>
+	<script src="../js/jquery.ui.datepicker-ja.js"></script>
+
+	<script src="../js/jquery.cookie.js"></script>
+
+	<script src="../js/bignumber.min.js"></script>
+	<script src="../js/numeral.min.js"></script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn7soGjAtIYhna4-J6Dx_fx-RSPNZalVc"></script>
+	
+	<script src="../js/common.js?Ver=1.46"></script>
+	<script src="control.js?Ver=1.58"></script>
+
+	<script src="../nippou/script.js?7"></script>
+	
+</head>
+
+<body>
+<div class="container">
+
+	<!-- header -->
+	<!--#include virtual="../ssi/header.html"-->
+	<!-- //header -->
+
+	<!-- gnav -->
+	<!--#include virtual="../ssi/gnav.html"-->
+	<!-- //gnav -->
+
+	<div class="content">
+		<div id="status_area" style="display:none">
+			<div class="ui-widget">
+				<div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;">
+					<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+					<strong><span id="status_msg"></span></strong></p>
+				</div>
+			</div>
+		</div>
+
+		<div id="error_area" style="display:none">
+			<div class="ui-widget">
+				<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+					<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+					<strong><span id="error_msg"></span></strong></p>
+				</div>
+			</div>
+		</div>
+		
+		<h1>■現場管理</h1>
+
+		<div class="search-area">
+			<h2>検索条件</h2>
+			<table>
+				<tr>
+					<th>ID</th>
+					<td><input type="text" id="search_id" size="4" /></td>
+					<th>キーワード1</th>
+					<td><input type="text" id="search_kw1" /></td>
+					<th>キーワード2</th>
+					<td><input type="text" id="search_kw2" /></td>
+				<tr>
+					<td colspan="6"><span id="jyoken_area"></span></td>
+				</tr>
+				<tr>
+					<th>期間</th>
+					<td colspan="5">
+						<input type="text" id="search_st_date" size="10" /> ～ <input type="text" id="search_end_date" size="10" />
+						<select id="date_sel">
+							<option value="0">対象日付を選択して下さい</option>
+							<option value="1">見積日</option>
+							<option value="2">受注工事開始日</option>
+							<option value="3">受注工事終了日</option>
+							<option value="4">受注工事締日</option>
+							<option value="5">発注工事開始日</option>
+							<option value="6">発注工事終了日</option>
+						</select>
+						
+						 架済みで払が未終了 <input type="checkbox" id="search_kake_bara">
+						 アンチ2枚架 <input type="checkbox" id="search_anti">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6" style="vertical-align:middle">
+						<button class="button" id="search_btn">検索</button> 
+						<button class="button" id="search_unlimited_btn">ページ無検索</button> 
+						<button class="button" id="search_unlimited_check_hazusu_btn">チェックした現場を一覧から外して検索</button> 
+						<button class="button" id="search_unlimited_check_btn">チェックした現場だけを検索</button> 
+						<button class="button" id="reset_btn">検索条件リセット</button>
+						<a href="csv_download.php" target="_blank"><button class="button" id="csv_down_btn">CSV</button></a>
+						
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="button-area">
+			<button class="button" id="new_btn">新規現場作成</button>
+			<button class="button" id="all-check">全てチェックする</button>
+			<button class="button" id="all-uncheck">チェックを全て外す</button>
+			<button class="button" id="show_del_btn">削除ボタンを表示する</button>
+			
+			<span>表示件数</span>
+			<select id="per_page">
+				<option value="15">15</option>
+				<option value="30">30</option>
+				<option value="50">50</option>
+				<option value="70">70</option>
+				<option value="100">100</option>
+			</select>
+			
+		</div>
+
+		<div class="button-area" id="result" style="line-height:1.6;display:none">
+			<table>
+				<tr>
+					<td width="100"><b>検索条件</b></td><td><span id="jyoken-area"></span></td>
+				</tr>
+				<tr>	
+					<td><b>検索結果</b></td>
+					<td><span id="jyoken-result-area"></span></td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="main-area">
+		</div>
+
+
+	</div><!-- end .content -->
+
+	<!-- footer -->
+	<!--#include virtual="../ssi/footer.html"-->
+	<!-- //footer -->
+
+</div><!-- end .container -->
+
+<div id="dialog1" title="Dialog Title">
+</div>
+<div id="dialog2" title="Dialog Title">
+</div>
+<div id="dialog3" title="Dialog Title">
+</div>
+
+<div id="optional-area">
+    <div id="optional-area-inner">
+    </div>
+	<span class='closeButton'><img src='../img/small_close.gif' title='閉じる' alt='close' /></span>
+</div>
+
+<div id="debugArea">
+</div>
+
+<div id="dialog-area-outer">
+    <div id="dialog-area">
+    	<span class="dialog-close"></span>
+
+        <div id="dialog-area-inner">
+        </div>
+
+    </div>
+</div>
+
+<div id="doing" style="display:none">
+	<p style="text-align:center;padding-top:150px;"><img src="../img/ajax-loader.gif" width="50" height="50" alt="doing"> 処理中です...</p>
+</div>
+
+<input type="hidden" id="hat_limit" value="0" />
+
+</body>
+</html>

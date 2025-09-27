@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="GOOGLEBOT" content="NOINDEX, NOFOLLOW" />
+	<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+	<meta http-equiv="X-UA-Compatible" content="IE=8 ; IE=9" />
+
+	<title>マスタ管理</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link href="../css/smoothness/jquery-ui-1.9.0.custom.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../css/screen.css">
+	<link rel="stylesheet" type="text/css" href="../css/gnav.css">
+
+	<script src="../js/jquery-1.8.2.min.js"></script>
+	<script src="../js/jquery-ui-1.9.0.custom.min.js"></script>
+	<script src="../js/jquery.ui.datepicker-ja.js"></script>
+
+	<script src="../js/jquery.cookie.js"></script>
+
+	<script src="../js/common.js?Ver=1.05"></script>
+	<script src="control.js?Ver=1.07"></script>
+</head>
+
+<body>
+<div class="container">
+
+	<!-- header -->
+	<!--#include virtual="../ssi/header.html"-->
+	<!-- //header -->
+
+	<!-- gnav -->
+	<!--#include virtual="../ssi/gnav.html"-->
+	<!-- //gnav -->
+
+	<div class="content">
+		<div id="status_area" style="display:none">
+			<div class="ui-widget">
+				<div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;">
+					<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+					<strong><span id="status_msg"></span></strong></p>
+				</div>
+			</div>
+		</div>
+
+		<div id="error_area" style="display:none">
+			<div class="ui-widget">
+				<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+					<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+					<strong><span id="error_msg"></span></strong></p>
+				</div>
+			</div>
+		</div>
+		
+		<h1>■元請マスタ管理</h1>
+
+		<div class="search-area">
+			<h2>検索条件</h2>
+			<table>
+				<tr>
+					<th>ID</th>
+					<td><input type="text" id="search_id" size="4" /></td>
+					<th>キーワード1</th>
+					<td><input type="text" id="search_kw1" /></td>
+					<th>キーワード2</th>
+					<td><input type="text" id="search_kw2" /></td>
+				</tr>
+				<tr>
+					<td colspan="6"><button class="button" id="search_btn">検索</button> <button class="button" id="reset_btn">検索条件リセット</button></td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="button-area">
+			<button class="button" id="new_btn">新規作成</button>
+			<button class="button" id="all-check">全てチェックする</button>
+			<button class="button" id="all-uncheck">チェックを全て外す</button>
+			<button class="button" id="all-delete-main">選択した行を削除する</button>
+			<button class="button" id="edit-mode">編集モード切替</button>
+			<button class="button" onclick="location.href='download.php'">CSVダウンロード</button>
+
+			<span>表示件数</span>
+			<select id="per_page">
+				<option value="15">15</option>
+				<option value="30">30</option>
+				<option value="50">50</option>
+				<option value="70">70</option>
+				<option value="100">100</option>
+			</select>
+		</div>
+
+		<div class="main-area">
+		</div>
+		<p style="color:red;font-size:10px;">※マスタ管理のデータは基本的に削除しないで下さい。データの整合性が合わなくなる可能性があります。</p>
+
+
+	</div><!-- end .content -->
+
+	<!-- footer -->
+	<!--#include virtual="../ssi/footer.html"-->
+	<!-- //footer -->
+
+</div><!-- end .container -->
+
+<div id="dialog1" title="Dialog Title">
+</div>
+<div id="dialog2" title="Dialog Title">
+</div>
+<div id="dialog3" title="Dialog Title">
+</div>
+
+<div id="optional-area">
+    <div id="optional-area-inner">
+    </div>
+	<span class='closeButton'><img src='../img/small_close.gif' title='閉じる' alt='close' /></span>
+</div>
+
+<div id="debugArea">
+</div>
+
+<div id="dialog-area-outer">
+    <div id="dialog-area">
+    	<span class="dialog-close"></span>
+
+        <div id="dialog-area-inner">
+        </div>
+
+    </div>
+</div>
+
+<div id="doing" style="display:none">
+	<p style="text-align:center;padding-top:150px;"><img src="../img/ajax-loader.gif" width="50" height="50" alt="doing"> 処理中です...</p>
+</div>
+
+</body>
+</html>
