@@ -7,10 +7,17 @@ $dbPass   = 'bonjovi-1';
 $dbName   = 'digitaling_matsushima';
 */
 
+/*
 $dbServer = 'mysql446.db.sakura.ne.jp';
 $dbUser   = 'granz';
 $dbPass   = 'wkgt554byw';
 $dbName   = 'granz_matsushima';
+*/
+
+$dbServer = 'mysql620.db.sakura.ne.jp';
+$dbUser   = 'granz';
+$dbPass   = 'wkgt554byw';
+$dbName   = 'granz_20210818';
 
 $flag = TRUE;
 // MySQLデータベースに接続
