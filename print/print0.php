@@ -66,6 +66,11 @@ if(isset($_REQUEST['sid'])) {
 	exit();	
 }
 
+$down_flag = 0;
+if(!empty($_REQUEST['dl'])) {
+	$down_flag = 1;
+}
+
 $my_invoice_no = "";
 if($COMPANY_INVOICE_NO) {
 	$my_invoice_no = "登録番号 ".$COMPANY_INVOICE_NO;
@@ -629,5 +634,10 @@ else {
     $_SESSION["genba"] = $g_genba;
     $_SESSION["g_id"] = $g_id;
 }
-header("Location:pdf.php"); //ここでXXX.pdfみたいにファイル名を記述
+if($down_flag) {
+	header("Location:pdfdl.php"); //ここでXXX.pdfみたいにファイル名を記述
+}
+else {
+	header("Location:pdf.php"); //ここでXXX.pdfみたいにファイル名を記述
+}
 

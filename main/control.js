@@ -936,7 +936,17 @@ function edit_slip(_id, _slipno) {
 				var idx = $(".slip-area:eq("+_slipno+") .ui-icon-print").index(this);
 				var id = $(".slip-area:eq("+_slipno+") ."+SLIP_ID_FIELD[_slipno]).eq(idx).val();
 
-				print_denpyo(_slipno, id);
+				print_denpyo(_slipno, id, 0);
+
+			});
+
+			//印刷ダウンロード表示ボタンイベントハンドリング
+			$(".slip-area:eq("+_slipno+") .ui-icon-print-dl").unbind("click");
+			$(".slip-area:eq("+_slipno+") .ui-icon-print-dl").click(function(e) {
+				var idx = $(".slip-area:eq("+_slipno+") .ui-icon-print-dl").index(this);
+				var id = $(".slip-area:eq("+_slipno+") ."+SLIP_ID_FIELD[_slipno]).eq(idx).val();
+
+				print_denpyo(_slipno, id, 1);
 
 			});
 
@@ -946,7 +956,7 @@ function edit_slip(_id, _slipno) {
 				var idx = $(".slip-area:eq("+_slipno+") .ui-icon-print2").index(this);
 				var id = $(".slip-area:eq("+_slipno+") ."+SLIP_ID_FIELD[_slipno]).eq(idx).val();
 
-				print_denpyo(_slipno, id);
+				print_denpyo(_slipno, id, 0);
 				already_print(_slipno, id, idx);
 
 			});
@@ -1645,10 +1655,10 @@ function mail_send_event() {
 }
 
 
-function print_denpyo(_slipno, _id) {
+function print_denpyo(_slipno, _id, dl_flag) {
 	switch(_slipno) {
 		case 0:
-			subwin0=window.open("../print/print"+_slipno+".php?sid="+_id ,"sub0", "width=950,height=700, scrollbars=yes, resizable=yes");
+			subwin0=window.open("../print/print"+_slipno+".php?sid="+_id+"&dl="+dl_flag ,"sub0", "width=950,height=700, scrollbars=yes, resizable=yes");
 			subwin0.focus();
 			break;
 		case 1:

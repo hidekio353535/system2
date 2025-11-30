@@ -1238,6 +1238,7 @@ else if($flag == "EDIT_SLIP") {
 						echo '
 						 <img src="../img/b_edit.png" title="編集" class="opa smlb ui-icon-pencil">
 						 <img src="../img/b_mit.png" title="見積印刷" class="opa smlb ui-icon-print">
+						 <img src="../img/b_mit_dl.png" title="見積ダウンロード" class="opa smlb ui-icon-print-dl">
 						';
 					}
 
@@ -1737,6 +1738,7 @@ else if($flag == "EDIT_SLIP") {
 						echo '
 						 <img src="../img/b_edit.png" title="編集" class="opa smlb ui-icon-pencil">
 						 <img src="../img/b_mit.png" title="見積印刷" class="opa smlb ui-icon-print">
+						 <img src="../img/b_mit_dl.png" title="見積ダウンロード" class="opa smlb ui-icon-print-dl">
 						';
 					}
 
