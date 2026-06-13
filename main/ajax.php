@@ -4299,8 +4299,9 @@ else if($flag == "SEND_MAIL_EXEC") {
 	$g_id		= $_REQUEST['g_id'];
 	if($sid) {
 		$mailTo      = $_REQUEST['mail_form_g_moto_email'];         // 宛て先アドレス
-		$mailFrom    = $_REQUEST['mail_form_from'];               	// 差出人のメールアドレス
-		$returnMail  = $_REQUEST['mail_form_from'];               	// Return-Pathに指定するメールアドレス
+		// 差出人は固定（リクエスト値を使うとヘッダインジェクションが可能なため。SPF/DKIMもこのドメインで設定済み）
+		$mailFrom    = 'ashiba@granz-co.jp';               	// 差出人のメールアドレス
+		$returnMail  = 'ashiba@granz-co.jp';               	// Return-Pathに指定するメールアドレス
 	
 		$mailSubject = $_REQUEST['mail_form_g_genba'];              // メールのタイトル
 		$mailMessage = $_REQUEST['mail_form_honbun']; 				// メール本文
