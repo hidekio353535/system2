@@ -63,7 +63,7 @@ while ($row = mysql_fetch_object($query)) {
 //exit();
 
 //encording
-$csv = mb_convert_encoding($csv, "SJIS", "UTF-8");
+$csv = mb_convert_encoding($csv, "SJIS-win", "UTF-8");
 //書き込み
 file_put_contents($path_file, $csv);
 
