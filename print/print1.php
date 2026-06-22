@@ -5,6 +5,7 @@ require_once('../tcpdf/config/lang/eng.php');
 require_once('../tcpdf/tcpdf.php');
 require_once("../php/db_connect.php");
 require_once("../php/company_info.php");
+require_once("../php/text_normalize.php");
 
 // create new PDF document
 $pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -85,7 +86,7 @@ else if(isset($_REQUEST['sidall'])) {
 	//パラメーター無しの場合はエラーメッセージで終了
 	$tbl = "<p>パラメータが指定されていません</p>";
 	$pdf->AddPage();
-	$pdf->writeHTML($tbl, true, false, false, false, '');
+	$pdf->writeHTML(nfc($tbl), true, false, false, false, '');
 	$pdf->Output('example_048.pdf', 'I');
 	exit();	
 }
@@ -109,7 +110,7 @@ $query = @mysql_query($sql);
 if(!$query) {
 	$tbl = "<p>SQLが不正です</p>";
 	$pdf->AddPage();
-	$pdf->writeHTML($tbl, true, false, false, false, '');
+	$pdf->writeHTML(nfc($tbl), true, false, false, false, '');
 	$pdf->Output('example_048.pdf', 'I');
 	exit();	
 }
@@ -176,7 +177,7 @@ while ($row = mysql_fetch_object($query)) {
 	if(!$query_s) {
 		$tbl = "<p>SQLが不正です</p>";
 		$pdf->AddPage();
-		$pdf->writeHTML($tbl, true, false, false, false, '');
+		$pdf->writeHTML(nfc($tbl), true, false, false, false, '');
 		$pdf->Output('example_048.pdf', 'I');
 		exit();	
 	}
@@ -647,7 +648,7 @@ EOD;
 			}
 	
 			$pdf->AddPage();
-			$pdf->writeHTML($tbl, true, false, false, false, '');
+			$pdf->writeHTML(nfc($tbl), true, false, false, false, '');
 		}
 	} // $page Loop
 	
@@ -775,7 +776,7 @@ EOD;
 EOD;
 	
 	$pdf->AddPage();
-	$pdf->writeHTML($tbl, true, false, false, false, '');
+	$pdf->writeHTML(nfc($tbl), true, false, false, false, '');
 
 }
 
