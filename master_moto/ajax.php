@@ -617,6 +617,9 @@ else if($flag == "EDIT_MAIN") {
 	while ($row = mysql_fetch_object($query)) {
 //----------------------個別領域 ここから----------------------------
 
+		// 新規作成時は「振込手数料表示」をデフォルトでチェック状態にする
+		if(!$id) $row->m_furikomi = 1;
+
 		echo "<tr>";
 		echo "<th>ID</th>";
 		echo "<td class='nw'>";
